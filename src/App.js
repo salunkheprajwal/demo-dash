@@ -6,13 +6,16 @@ import Dashboard from './screens/Dashboard';
 import WorkItemsPage from './screens/WorkItemsPage';
 
 const App = () => {
+  // Manage sidebar open state here so Navbar and Sidebar can coordinate
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+
   return (
     <Router>
       <div className="min-h-screen bg-gray-50 flex flex-col">
-        <Navbar />
+        <Navbar onMenuToggle={() => setSidebarOpen(open => !open)} />
         <div className="flex flex-1">
-          <Sidebar />
-          <main className="flex-1 p-6">
+          <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+          <main className="flex-1 p-6 min-h-screen overflow-auto">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/work-items" element={<WorkItemsPage />} />

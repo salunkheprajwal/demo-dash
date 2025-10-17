@@ -5,7 +5,7 @@ import WorkItemsFilterBar from '../components/WorkItemsFilterBar';
 
 const allWorkItems = [
   {
-    id: 46,
+    id: 1,
     title: 'Identified and logged defects in Restaurant app',
     assignedTo: 'Nitin Arde',
     state: 'Active',
@@ -16,7 +16,7 @@ const allWorkItems = [
     tags: 'Frontend',
   },
   {
-    id: 33,
+    id: 2,
     title: 'Location API causing crashes in client app',
     assignedTo: 'Unassigned',
     state: 'New',
@@ -27,7 +27,7 @@ const allWorkItems = [
     tags: 'API',
   },
   {
-    id: 48,
+    id: 3,
     title: 'Admin Panel: Fix Tax Field Validation Bug on Admin Panel Form',
     assignedTo: 'Unassigned',
     state: 'New',
@@ -38,7 +38,7 @@ const allWorkItems = [
     tags: 'UI/UX',
   },
   {
-    id: 26,
+    id: 4,
     title: 'Identify and log defects',
     assignedTo: 'Chetana Patil',
     state: 'Active',
@@ -49,7 +49,7 @@ const allWorkItems = [
     tags: 'Backend',
   },
   {
-    id: 30,
+    id: 5,
     title: 'Creating the universal apk',
     assignedTo: 'Prajwal Salunkhe',
     state: 'New',
@@ -99,10 +99,10 @@ const WorkItemsPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-[700px] overflow-y-auto bg-white">
+    <div className="flex flex-col bg-white">
       <WorkItemsHeader />
       <WorkItemsFilterBar onFilterChange={handleFilterChange} />
-      <div className="flex-1 p-4">
+      <div className="p-4">
         <WorkItemsTable workItems={filteredItems} />
       </div>
     </div>

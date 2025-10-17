@@ -15,5 +15,16 @@ body {
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  /* allow scrolling on small devices and when content overflows */
+  overflow: auto;
+}
+
+/* Small animation utility used by filter dropdowns */
+.animate-fadeIn {
+  animation: fadeIn 160ms ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
