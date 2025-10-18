@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import WorkItemsHeader from '../components/workitem/WorkItemsHeader';
 import WorkItemsTable from  '../components/workitem/WorkItemsTable';
 import WorkItemsFilterBar from '../components/workitem/WorkItemsFilterBar';
+import WorkItemsSummary from '../components/workitem/WorkItemsSummary';
 import allWorkItems from '../data/workItems';
 const WorkItemsPage = () => {
   const [filteredItems, setFilteredItems] = useState(allWorkItems);
@@ -43,10 +44,15 @@ const WorkItemsPage = () => {
 
   return (
     <div className="flex flex-col bg-white">
+  <div className="mb-4">
+  <WorkItemsSummary workItems={filteredItems} />
+</div>    
       <WorkItemsHeader />
       <WorkItemsFilterBar onFilterChange={handleFilterChange} />
-      <div className="p-4">
-        <WorkItemsTable workItems={filteredItems} />
+      <div className="p-4 space-y-4">
+        <div>
+          <WorkItemsTable workItems={filteredItems} />
+        </div>
       </div>
     </div>
   );

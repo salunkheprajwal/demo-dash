@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Home, Plus, Eye, Settings, Menu, X } from 'lucide-react';
+import { Home, X } from 'lucide-react';
 import { Link } from 'react-router-dom'; 
 
 const Sidebar = ({ isOpen = false, onClose = () => {} }) => {
 
   const navigation = [
-    { name: 'Dashboard', icon: Home, path: '/' },
-    // { name: 'Add Project', icon: Plus, path: '/add-project' },
-    { name: 'Boards', icon: Eye, path: '/work-items' }, 
-    { name: 'Settings', icon: Settings, path: '/settings' },
+    { name: 'work-items', icon: Home, path: '/' },
   ];
 
   return (

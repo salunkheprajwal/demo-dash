@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/shared/Sidebar';
 import Navbar from './components/shared/Navbar';
-import Dashboard from './screens/Dashboard';
 import WorkItemsPage from './screens/WorkItemsPage';
 
 const App = () => {
@@ -17,8 +16,7 @@ const App = () => {
           <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
           <main className="flex-1 p-6 min-h-screen overflow-auto">
             <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/work-items" element={<WorkItemsPage />} />
+              <Route path="/" element={<WorkItemsPage />} />
             </Routes>
           </main>
         </div>
