@@ -7,10 +7,10 @@ const WorkItemsTable = ({ workItems }) => {
 
   const getStateColor = (state) => {
     const colors = {
-      'Active': 'text-blue-600',
+      'Active': 'text-theme-primary',
       'New': 'text-gray-500',
       'Design': 'text-purple-600',
-      'Resolved': 'text-green-600',
+      'Resolved': 'text-theme-success',
       'Closed': 'text-gray-400',
     };
     return colors[state] || 'text-gray-600';
@@ -22,10 +22,10 @@ const WorkItemsTable = ({ workItems }) => {
 
   const getStateBackground = (state) => {
     const backgrounds = {
-      'Active': 'bg-blue-50',
+      'Active': 'bg-theme-primary-50',
       'New': 'bg-gray-50',
       'Design': 'bg-purple-50',
-      'Resolved': 'bg-green-50',
+      'Resolved': 'bg-theme-success-50',
       'Closed': 'bg-gray-100',
     };
     return backgrounds[state] || 'bg-gray-50';

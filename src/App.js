@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
+import Sidebar from './components/shared/Sidebar';
+import Navbar from './components/shared/Navbar';
 import Dashboard from './screens/Dashboard';
 import WorkItemsPage from './screens/WorkItemsPage';
 

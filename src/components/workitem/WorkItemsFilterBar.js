@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { filterOptions } from '../../data/workItems';
 
 const WorkItemsFilterBar = ({ onFilterChange }) => {
   // State management
@@ -15,14 +16,8 @@ const WorkItemsFilterBar = ({ onFilterChange }) => {
   const containerRef = useRef(null);
   const keywordInputRef = useRef(null);
 
-  // Filter options - could be fetched from API
-  const filterOptions = {
-    types: ['Bug', 'Task', 'User Story', 'Epic', 'Feature'],
-    assignees: ['Nitin Arde', 'Chetana Patil', 'Rahul Bendre', 'Prajwal Salunkhe', 'Unassigned'],
-    states: ['New', 'Active', 'Resolved', 'Closed', 'Design'],
-    areas: ['Dibba Delivery', 'Dibba Admin', 'Dibba Rider'],
-    tags: ['Frontend', 'Backend', 'API', 'UI/UX', 'Database', 'Mobile', 'Critical']
-  };
+  // Filter options - imported from data/filterOptions.js
+  // (Kept as a constant file to allow easy reuse and potential API replacement.)
 
   // Handle click outside to close dropdowns
   useEffect(() => {
@@ -158,11 +153,11 @@ const WorkItemsFilterBar = ({ onFilterChange }) => {
       <div className="relative">
         <button
           onClick={() => toggleDropdown(name)}
-          className={`
+            className={`
             flex items-center gap-1 px-2.5 py-1.5 rounded text-xs
             transition-all duration-200 ease-in-out
             hover:bg-gray-100
-            ${hasSelections ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-600'}
+            ${hasSelections ? 'text-theme-primary font-medium bg-theme-primary-50' : 'text-gray-600'}
             ${isActive ? 'bg-gray-100 shadow-sm' : ''}
           `}
           aria-expanded={isActive}
@@ -171,7 +166,7 @@ const WorkItemsFilterBar = ({ onFilterChange }) => {
           <span className="whitespace-nowrap">
             {label}
             {hasSelections && (
-              <span className="ml-1 px-1.5 py-0.5 bg-blue-600 text-white text-[10px] rounded-full">
+              <span className="ml-1 px-1.5 py-0.5 bg-theme-primary-50 text-theme-primary-contrast text-[10px] rounded-full">
                 {selectedItems.length}
               </span>
             )}
@@ -210,13 +205,13 @@ const WorkItemsFilterBar = ({ onFilterChange }) => {
                     type="checkbox"
                     checked={selectedItems.includes(option)}
                     onChange={() => onToggle(option)}
-                    className="rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 w-3.5 h-3.5"
+                    className={`rounded border-gray-300 text-theme-primary focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 w-3.5 h-3.5`}
                   />
                   <span className="text-xs text-gray-700 group-hover:text-gray-900 select-none">
                     {option}
                   </span>
                   {selectedItems.includes(option) && (
-                    <svg className="w-3.5 h-3.5 ml-auto text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className={`w-3.5 h-3.5 ml-auto text-theme-primary`} fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   )}
@@ -224,24 +219,6 @@ const WorkItemsFilterBar = ({ onFilterChange }) => {
               ))}
             </div>
 
-            {/* Footer with actions */}
-            {selectedItems.length > 0 && (
-              <div className="border-t border-gray-100 p-2 bg-gray-50 sticky bottom-0">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    options.forEach(option => {
-                      if (selectedItems.includes(option)) {
-                        onToggle(option);
-                      }
-                    });
-                  }}
-                  className="text-[10px] text-blue-600 hover:text-blue-700 font-medium"
-                >
-                  Clear {selectedItems.length} selected
-                </button>
-              </div>
-            )}
           </div>
         )}
       </div>
@@ -371,21 +348,21 @@ const WorkItemsFilterBar = ({ onFilterChange }) => {
           )}
 
           {selectedTypes.map(type => (
-            <span key={type} className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 border border-blue-200 rounded text-[10px] text-blue-700">
+            <span key={type} className={`inline-flex items-center gap-1 px-2 py-0.5 bg-theme-primary-50 border border-blue-200 rounded text-[10px] text-theme-primary`}>
               {type}
               <button onClick={() => toggleType(type)} className="ml-0.5 hover:text-blue-900 text-sm">×</button>
             </span>
           ))}
 
           {selectedAssignees.map(assignee => (
-            <span key={assignee} className="inline-flex items-center gap-1 px-2 py-0.5 bg-green-50 border border-green-200 rounded text-[10px] text-green-700">
+            <span key={assignee} className={`inline-flex items-center gap-1 px-2 py-0.5 bg-theme-success-50 border border-green-200 rounded text-[10px] text-theme-success`}>
               {assignee}
               <button onClick={() => toggleAssignee(assignee)} className="ml-0.5 hover:text-green-900 text-sm">×</button>
             </span>
           ))}
 
           {selectedStates.map(state => (
-            <span key={state} className="inline-flex items-center gap-1 px-2 py-0.5 bg-purple-50 border border-purple-200 rounded text-[10px] text-purple-700">
+            <span key={state} className={`inline-flex items-center gap-1 px-2 py-0.5 bg-theme-info-50 border border-purple-200 rounded text-[10px] text-theme-info`}>
               {state}
               <button onClick={() => toggleState(state)} className="ml-0.5 hover:text-purple-900 text-sm">×</button>
             </span>
